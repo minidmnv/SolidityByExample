@@ -15,7 +15,7 @@ contract SwapExamples {
         swapRouter = _swapRouter;
     }
 
-    function swapExactInputSingle(address tokenInAddress, address tokenOutAddress, uint256 amountIn) external returns (uint256 amountOut) {
+    function swapExactInputSingle(address tokenInAddress, address tokenOutAddress, uint256 amountIn, uint256 amountOutMinimum) external returns (uint256 amountOut) {
         // msg.sender must approve this contract
 
         // Transfer the specified amount of input token to this contract.
@@ -33,7 +33,7 @@ contract SwapExamples {
                 recipient: msg.sender,
                 deadline: block.timestamp,
                 amountIn: amountIn,
-                amountOutMinimum: 0,
+                amountOutMinimum: amountOutMinimum,
                 sqrtPriceLimitX96: 0
             });
 
